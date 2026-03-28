@@ -2,7 +2,7 @@
 
 A machine learning-powered SMS spam detection system built with Python and scikit-learn. This project uses Natural Language Processing techniques to classify SMS messages as either spam or legitimate (ham) messages with 96% accuracy.
 
-## 🚀 Features
+## Features
 
 - **High Accuracy**: Achieves 96% overall accuracy on SMS classification
 - **Robust Pipeline**: Complete ML pipeline with text preprocessing, feature extraction, and classification
@@ -12,7 +12,7 @@ A machine learning-powered SMS spam detection system built with Python and sciki
 - **Easy to Use**: Simple Jupyter notebook interface for training and prediction
 - **Comprehensive Dataset**: Trained on 5,572 SMS messages (4,825 ham, 747 spam)
 
-## 📊 Model Performance
+## Model Performance
 
 Our spam detection model achieves excellent performance metrics:
 
@@ -26,7 +26,7 @@ Our spam detection model achieves excellent performance metrics:
   - Recall: 69%
   - F1-Score: 81%
 
-## 🛠 Technology Stack
+## Technology Stack
 
 - **Python 3.x** - Core programming language
 - **Jupyter Notebook** - Interactive development environment
@@ -36,7 +36,7 @@ Our spam detection model achieves excellent performance metrics:
 - **nltk** - Natural Language Toolkit for text processing
 - **numpy** - Numerical computing
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 nlp-spam-filter/
@@ -52,7 +52,7 @@ nlp-spam-filter/
     └── API.md                # Code components documentation
 ```
 
-## 📦 Installation
+## Installation
 
 1. **Clone the repository**:
    ```bash
@@ -71,7 +71,7 @@ nlp-spam-filter/
    nltk.download('stopwords')
    ```
 
-## 🚀 Quick Start
+## Quick Start
 
 1. **Launch Jupyter Notebook**:
    ```bash
@@ -93,7 +93,7 @@ nlp-spam-filter/
    print(f"Prediction: {prediction[0]}")  # Output: 'spam'
    ```
 
-## 📈 Dataset Information
+## Dataset Information
 
 The project uses the **SMS Spam Collection Dataset**:
 - **Total Messages**: 5,572
@@ -106,7 +106,7 @@ The project uses the **SMS Spam Collection Dataset**:
 - **Ham**: "Ok lar... Joking wif u oni..."
 - **Spam**: "WINNER!! As a valued network customer you have been selected to receive a £900 prize reward!"
 
-## 🔧 ML Pipeline Overview
+## ML Pipeline Overview
 
 1. **Data Loading**: Load SMS messages from CSV file
 2. **Text Preprocessing**: 
@@ -117,7 +117,7 @@ The project uses the **SMS Spam Collection Dataset**:
 4. **Model Training**: Train MultinomialNB classifier
 5. **Evaluation**: Assess performance on test set (30% split)
 
-## 📊 Usage Examples
+## Usage Examples
 
 ### Training the Model
 ```python
@@ -147,7 +147,7 @@ predictions = pipeline.predict(test_messages)
 print(predictions)  # ['spam', 'ham']
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on:
 - How to submit bug reports and feature requests
@@ -155,20 +155,12 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 - Code style standards
 - Pull request process
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - SMS Spam Collection Dataset from UCI Machine Learning Repository
 - scikit-learn community for excellent ML tools
 - NLTK team for natural language processing capabilities
-
-## 📞 Contact
-
-**Luke Opany** - [GitHub Profile](https://github.com/LukeOpany)
-
----
-
-⭐ If you find this project helpful, please consider giving it a star!
