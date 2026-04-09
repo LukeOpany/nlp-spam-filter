@@ -147,17 +147,7 @@ predictions = pipeline.predict(test_messages)
 print(predictions)  # ['spam', 'ham']
 ```
 
-## Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on:
-- How to submit bug reports and feature requests
-- Development setup and workflow
-- Code style standards
-- Pull request process
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
