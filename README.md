@@ -149,8 +149,4 @@ print(predictions)  # ['spam', 'ham']
 
 
 
-## Acknowledgments
 
-- SMS Spam Collection Dataset from UCI Machine Learning Repository
-- scikit-learn community for excellent ML tools
-- NLTK team for natural language processing capabilities
