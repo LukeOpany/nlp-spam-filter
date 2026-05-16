@@ -1,152 +1,116 @@
-# NLP Spam Filter
+# SMS Spam Detection
 
-A machine learning-powered SMS spam detection system built with Python and scikit-learn. This project uses Natural Language Processing techniques to classify SMS messages as either spam or legitimate (ham) messages with 96% accuracy.
+This project classifies SMS messages as either legitimate (`ham`) or unwanted (`spam`) using natural language processing and machine learning.
 
-## Features
+The main goal is to show a clear machine learning workflow:
 
-- **High Accuracy**: Achieves 96% overall accuracy on SMS classification
-- **Robust Pipeline**: Complete ML pipeline with text preprocessing, feature extraction, and classification
-- **Text Preprocessing**: Comprehensive text cleaning including punctuation removal and stopword filtering
-- **TF-IDF Vectorization**: Advanced feature extraction using Term Frequency-Inverse Document Frequency
-- **Naive Bayes Classification**: Efficient MultinomialNB classifier optimized for text classification
-- **Easy to Use**: Simple Jupyter notebook interface for training and prediction
-- **Comprehensive Dataset**: Trained on 5,572 SMS messages (4,825 ham, 747 spam)
+1. Load the SMS message dataset.
+2. Explore the target classes and message text.
+3. Clean and tokenize the text.
+4. Convert messages into numeric features.
+5. Train a text classification model.
+6. Evaluate how well the model separates ham from spam.
 
-## Model Performance
+## Dataset
 
-Our spam detection model achieves excellent performance metrics:
+The dataset is [SMSSpamCollection.csv](SMSSpamCollection.csv). It contains 5,572 SMS messages from the SMS Spam Collection dataset.
 
-- **Overall Accuracy**: 96%
-- **Ham (Legitimate) Messages**:
-  - Precision: 95%
-  - Recall: 100%
-  - F1-Score: 98%
-- **Spam Messages**:
-  - Precision: 100%
-  - Recall: 69%
-  - F1-Score: 81%
+| Column | Meaning |
+| --- | --- |
+| `label` | Message class: `ham` or `spam` |
+| `message` | Raw SMS message text |
 
-## Technology Stack
+Class balance:
 
-- **Python 3.x** - Core programming language
-- **Jupyter Notebook** - Interactive development environment
-- **pandas** - Data manipulation and analysis
-- **scikit-learn** - Machine learning library
-- **matplotlib & seaborn** - Data visualization
-- **nltk** - Natural Language Toolkit for text processing
-- **numpy** - Numerical computing
+| Class | Messages |
+| --- | ---: |
+| `ham` | 4,825 |
+| `spam` | 747 |
 
-## Project Structure
+The dataset is imbalanced: most messages are legitimate. That matters because a high accuracy score can hide weak spam detection, so the project also reports precision, recall, F1-score, and a confusion matrix.
 
-```
-nlp-spam-filter/
-├── README.md                   # Project documentation
-├── LICENSE                     # MIT License
-├── requirements.txt            # Python dependencies
-├── nlp.ipynb                  # Main Jupyter notebook with ML pipeline
-├── SMSSpamCollection.csv      # SMS dataset (5,572 messages)
-├── CONTRIBUTING.md            # Contribution guidelines
-└── docs/                      # Additional documentation
-    ├── METHODOLOGY.md         # ML approach and methodology
-    ├── DATASET.md            # Dataset information and structure
-    └── API.md                # Code components documentation
-```
+## Project Files
 
-## Installation
+| File | Purpose |
+| --- | --- |
+| [nlp.ipynb](nlp.ipynb) | Guided notebook with exploration, preprocessing, training, and evaluation |
+| [train_model.py](train_model.py) | Clean reproducible training script |
+| [SMSSpamCollection.csv](SMSSpamCollection.csv) | SMS dataset used for modeling |
+| [requirements.txt](requirements.txt) | Python dependencies |
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/LukeOpany/nlp-spam-filter.git
-   cd nlp-spam-filter
-   ```
+## Notebook Workflow
 
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+The notebook is organized as a guided walkthrough:
 
-3. **Download NLTK data** (required for stopwords):
-   ```python
-   import nltk
-   nltk.download('stopwords')
-   ```
+1. Import libraries.
+2. Load the dataset with a portable relative path.
+3. Inspect rows, shape, labels, missing values, and duplicates.
+4. Understand the target balance between ham and spam messages.
+5. Explore message length patterns by class.
+6. Define text preprocessing for punctuation and stopwords.
+7. Split the data into training and test sets.
+8. Build a scikit-learn text classification pipeline.
+9. Train and evaluate the model.
+10. Try sample predictions on new SMS messages.
 
 ## Quick Start
 
-1. **Launch Jupyter Notebook**:
-   ```bash
-   jupyter notebook nlp.ipynb
-   ```
+Create a virtual environment and install dependencies:
 
-2. **Run all cells** to:
-   - Load and explore the SMS dataset
-   - Preprocess text data (remove punctuation, stopwords)
-   - Create TF-IDF feature vectors
-   - Train the Naive Bayes classifier
-   - Evaluate model performance
-
-3. **Predict new messages**:
-   ```python
-   # Example prediction
-   new_message = ["Congratulations! You've won a $1000 gift card. Click here to claim!"]
-   prediction = pipeline.predict(new_message)
-   print(f"Prediction: {prediction[0]}")  # Output: 'spam'
-   ```
-
-## Dataset Information
-
-The project uses the **SMS Spam Collection Dataset**:
-- **Total Messages**: 5,572
-- **Legitimate Messages (Ham)**: 4,825 (86.6%)
-- **Spam Messages**: 747 (13.4%)
-- **Source**: UCI Machine Learning Repository
-- **Format**: Tab-separated values with label and message columns
-
-### Sample Messages:
-- **Ham**: "Ok lar... Joking wif u oni..."
-- **Spam**: "WINNER!! As a valued network customer you have been selected to receive a £900 prize reward!"
-
-## ML Pipeline Overview
-
-1. **Data Loading**: Load SMS messages from CSV file
-2. **Text Preprocessing**: 
-   - Remove punctuation
-   - Convert to lowercase
-   - Remove stopwords (common words like 'the', 'and', etc.)
-3. **Feature Extraction**: Convert text to TF-IDF vectors
-4. **Model Training**: Train MultinomialNB classifier
-5. **Evaluation**: Assess performance on test set (30% split)
-
-## Usage Examples
-
-### Training the Model
-```python
-from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.naive_bayes import MultinomialNB
-
-# Create and train pipeline
-pipeline = Pipeline([
-    ('bow', CountVectorizer(analyzer=text_process)),
-    ('tfidf', TfidfTransformer()),
-    ('classifier', MultinomialNB())
-])
-
-pipeline.fit(msg_train, label_train)
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### Making Predictions
-```python
-# Predict on new messages
-test_messages = [
-    "Free entry in 2 a wkly comp to win FA Cup final tkts",
-    "Hey, are we still meeting for lunch today?"
-]
+Run the reproducible training script:
 
-predictions = pipeline.predict(test_messages)
-print(predictions)  # ['spam', 'ham']
+```bash
+python train_model.py
 ```
 
+Or open the notebook:
 
+```bash
+jupyter notebook nlp.ipynb
+```
 
+When using VS Code, select the project virtual environment as the notebook kernel before running cells.
 
+## Modeling Approach
+
+The training script uses a scikit-learn pipeline:
+
+- Removes punctuation from each message.
+- Converts text to lowercase tokens.
+- Removes common English stopwords.
+- Uses `CountVectorizer` to build bag-of-words features.
+- Uses `TfidfTransformer` to weight words by importance.
+- Trains a `MultinomialNB` classifier.
+- Evaluates on a held-out stratified test set.
+
+The test split uses `random_state=42`, so the output is reproducible.
+
+Example output:
+
+```text
+SMS Spam Detection Model
+========================
+Rows: 5,572
+Class counts:
+ham     4825
+spam     747
+
+Accuracy: 0.963
+Confusion matrix (labels: ham, spam):
+[[1448    0]
+ [  62  162]]
+```
+
+In beginner-friendly terms, the model is correct about 96% of the time. It is especially conservative about marking messages as spam: when it predicts `spam`, it is very precise, but it still lets some spam messages through. That is a reasonable tradeoff for a spam filter because incorrectly hiding a real message can be more costly than allowing some spam into the inbox.
+
+## Acknowledgments
+
+- SMS Spam Collection Dataset from the UCI Machine Learning Repository.
+- scikit-learn for the machine learning pipeline tools.
+- NLTK for English stopword handling.
